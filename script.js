@@ -18,7 +18,8 @@ const renderArticles = (data) => {
     .map((movieData) => {
       return `<h3>Title: ${movieData.title}</h3>
       <img src="http://image.tmdb.org/t/p/w220_and_h330_face${movieData.poster_path}" alt=""/>
-  <p>${movieData.overview}</p>`;
+  <p>${movieData.overview}</p>
+  <hr>`;
     })
     .join("");
   document.getElementById("movie-list").innerHTML = theMovieList;

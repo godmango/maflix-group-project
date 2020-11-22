@@ -3,24 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Maflix</title>
   </head>
   <body>
     <div class="navbar">
       <div class="smallbox1">
-        <h2 class="navbarWords">Maflix</h2>
-        <a class="navbarWords" href="#">Home</a>
-        <a class="navbarWords" href="#">Latest Movie</a>
-        <a class="navbarWords" href="#">Whatever</a>
-        <a class="navbarWords" href="#">Genre</a>
+        <!-- <h2 class="navbarWords">Ma<span class="titleRed">flix</span></h2> -->
+        <img src="images/maflixlogo2.png" alt="" />
+        <a class="navbarWords" onclick="homepage()" href="#">Home</a>
+        <a class="navbarWords" onclick="latestMovies()" href="#"
+          >Latest Movie</a
+        >
+        <a class="navbarWords" onclick="actorsAndActress()" href="#"
+          >Popular Actors/Actress</a
+        >
+        <!-- <a class="navbarWords" href="#">Genre</a> -->
       </div>
       <div class="smallbox2">
-        <input type="text" placeholder="Latest / Actors / Genre" />
-        <button>Search</button>
+        <input id="search" class="inputBox" type="text" placeholder="Search" />
+        <button id="btn" class="searchBut" onclick="searchButton()">
+          Search
+        </button>
       </div>
     </div>
-    <div id="movie-list"></div>
+    <div class="wallpaperDiv">
+      <img class="wallpaper" src="images/marvel.jpg" alt="" />
+    </div>
+    <div class="movieListDiv">
+      <div id="movie-list" class="movieDiv"></div>
+    </div>
+    <div class="main" id="main"></div>
+    <!-- <div id="mainModal" class="modal">
+      <div id="insideMainModal" class="insideModal"></div>
+    </div> -->
+    <div class="buttonDiv">
+      <button id="pop" class="moreButton" onclick="loadMorePopular()">
+        Load More
+      </button>
+      <button
+        id="lat"
+        class="moreButton"
+        onclick="loadMoreLatest()"
+        style="display: none"
+      >
+        Load More
+      </button>
+      <button
+        id="pep"
+        class="moreButton"
+        onclick="loadMorePeople()"
+        style="display: none"
+      >
+        Load More
+      </button>
+      <button
+        id="ser"
+        class="moreButton"
+        onclick="loadMoreSearch()"
+        style="display: none"
+      >
+        Load More
+      </button>
+    </div>
+    <footer>
+      <div class="bigFotterBox">
+        <div class="footerBox">
+          <div><img src="images/maflixlogo.png" alt="" /></div>
+        </div>
+        <div class="footerBox">
+          <div>
+            <h4>Contact</h4>
+            <p>Copac Square, 12 Ton Dan St., Ward 13, Dist 4</p>
+            <p>Ho Chi Minh</p>
+            <p>Vietnam</p>
+            <div class="flexify">
+              <i class="fas fa-phone-square-alt fa-2x"></i>
+              <p>&nbsp;0984 326 569</p>
+            </div>
+            <div class="flexify">
+              <i class="fas fa-envelope-square fa-2x"></i>
+              <p>&nbsp;apply@coderschool.vn</p>
+            </div>
+          </div>
+        </div>
+        <div class="footerBox">
+          <div>
+            <h4>Follow us in</h4>
+            <i class="fab fa-facebook-square fa-3x"></i>
+            <i class="fab fa-instagram-square fa-3x"></i>
+            <i class="fab fa-twitter-square fa-3x"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

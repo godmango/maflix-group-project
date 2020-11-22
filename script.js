@@ -35,7 +35,7 @@ const renderArticles = (data, location) => {
     .map((movieData) => {
       // onClick="showModal(${movieData.id})" can be added if needed
       return `<div class="singleMovieDiv">
-      <img class="everyImage" src="http://image.tmdb.org/t/p/w220_and_h330_face${movieData.poster_path}" alt=""/>
+      <img class="everyImage" src="https://image.tmdb.org/t/p/w220_and_h330_face${movieData.poster_path}" alt=""/>
       <h3>${movieData.title}</h3>
   <p class="makeItalic">${movieData.release_date}</p>
   <p>Rating: ${movieData.vote_average}/10</p>
@@ -90,7 +90,7 @@ const renderActorList = (data) => {
       </div>`;
       }
       return `<div class="singleMovieDiv">
-      <img class="everyImage" src="http://image.tmdb.org/t/p/w220_and_h330_face${person.profile_path}" alt=""/>
+      <img class="everyImage" src="https://image.tmdb.org/t/p/w220_and_h330_face${person.profile_path}" alt=""/>
       <h3>${person.name}</h3>
       <p>Occupation: ${person.known_for_department}</p>
       <p>Starred in: ${person.known_for[0].title}</p>
@@ -162,7 +162,7 @@ const getSearchData = async (url) => {
         </div>`;
         }
         return `<div class="singleMovieDiv">
-      <img class="everyImage" src="http://image.tmdb.org/t/p/w220_and_h330_face${element.profile_path}" alt=""/>
+      <img class="everyImage" src="https://image.tmdb.org/t/p/w220_and_h330_face${element.profile_path}" alt=""/>
       <h3>${element.name}</h3>
       <p>Occupation: ${element.known_for_department}</p>
       <p>Starred in: ${element.known_for[0].title}</p>

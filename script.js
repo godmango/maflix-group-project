@@ -51,30 +51,33 @@ const renderArticles = (data, location) => {
 // end of popular -----------------------------------------------
 
 // popular actors/actresses
-const getURL = (urlOptions) => {
-  // let url = Object.keys(urlOptions).reduce((url, option, type) => {
-  //   if (urlOptions[option] || urlOptions[type]) {
-  //     url += `${urlOptions[option]}/`;
-  //   }
-  //   return url;
-  // }, `https://api.themoviedb.org/3/`);
-  // url += `?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
-  let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
-  console.log(url);
-  return url;
-};
+// const getURL = (urlOptions) => {
+// let url = Object.keys(urlOptions).reduce((url, option, type) => {
+//   if (urlOptions[option] || urlOptions[type]) {
+//     url += `${urlOptions[option]}/`;
+//   }
+//   return url;
+// }, `https://api.themoviedb.org/3/`);
+// url += `?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+// let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+// console.log(url);
+// return url;
+// };
 
 const getActors = async () => {
-  const response = await fetch(
-    //this is url for getting popular data
-    getURL(urlOptions)
-  );
-  const data = await response.json();
-  console.log(data);
-  renderActorList(data.results);
+  // const response = await fetch(
+  //this is url for getting popular data
+  // getURL(urlOptions)
+  // );
+  let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+  // const data = await response.json();
+  const data = await fetch(url);
+  const result = await data.json();
+  console.log(result);
+  renderActorList(result.results, "movie-list");
 };
 
-const renderActorList = (data) => {
+const renderActorList = (data, location) => {
   console.log(data);
   let actors = data
     .map((person) => {
@@ -100,7 +103,7 @@ const renderActorList = (data) => {
     })
     .join("");
   movieList.push(actors);
-  document.getElementById("movie-list").innerHTML = movieList;
+  document.getElementById(location).innerHTML = movieList;
 };
 
 // end of popular people ----------------------------------------------

@@ -69,13 +69,14 @@ const getActors = async () => {
   //this is url for getting popular data
   // getURL(urlOptions)
   // );
+  console.log("am i even in");
   let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
   // const data = await response.json();
-  console.log(url);
+  console.log("the url", url);
   const data = await fetch(url);
-  console.log(data);
+  console.log("the date", data);
   const result = await data.json();
-  console.log(result);
+  console.log("the result", result);
   renderActorList(result.results, "movie-list");
 };
 

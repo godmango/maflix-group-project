@@ -59,6 +59,7 @@ const getURL = (urlOptions) => {
     return url;
   }, `https://api.themoviedb.org/3/`);
   url += `?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+  console.log(url);
   return url;
 };
 

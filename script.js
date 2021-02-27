@@ -52,13 +52,14 @@ const renderArticles = (data, location) => {
 
 // popular actors/actresses
 const getURL = (urlOptions) => {
-  let url = Object.keys(urlOptions).reduce((url, option, type) => {
-    if (urlOptions[option] || urlOptions[type]) {
-      url += `${urlOptions[option]}/`;
-    }
-    return url;
-  }, `https://api.themoviedb.org/3/`);
-  url += `?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+  // let url = Object.keys(urlOptions).reduce((url, option, type) => {
+  //   if (urlOptions[option] || urlOptions[type]) {
+  //     url += `${urlOptions[option]}/`;
+  //   }
+  //   return url;
+  // }, `https://api.themoviedb.org/3/`);
+  // url += `?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+  let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
   console.log(url);
   return url;
 };

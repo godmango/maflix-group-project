@@ -23,7 +23,8 @@ const getArticle = async () => {
 
 // getting data for latest movies
 const getLatest = async () => {
-  let link = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=${latestPage}`;
+  // let link = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=${latestPage}`;
+  let link = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
   const data = await fetch(link);
   const result = await data.json();
   console.log("GOT DATA", result);

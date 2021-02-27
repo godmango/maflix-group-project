@@ -71,6 +71,7 @@ const getActors = async () => {
   // );
   let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
   // const data = await response.json();
+  console.log(url);
   const data = await fetch(url);
   console.log(data);
   const result = await data.json();

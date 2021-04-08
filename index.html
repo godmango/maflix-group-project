@@ -29,12 +29,12 @@
         >
         <!-- <a class="navbarWords" href="#">Genre</a> -->
       </div>
-      <div class="smallbox2">
+      <form class="smallbox2">
         <input id="search" class="inputBox" type="text" placeholder="Search" />
-        <button id="btn" class="searchBut" onclick="searchButton()">
+        <button type="submit" id="btn" class="searchBut" onclick="searchButton()">
           Search
         </button>
-      </div>
+      </form>
     </div>
     <div class="wallpaperDiv">
       <img class="wallpaper" src="images/marvel.jpg" alt="" />
@@ -43,9 +43,9 @@
       <div id="movie-list" class="movieDiv"></div>
     </div>
     <div class="main" id="main"></div>
-    <!-- <div id="mainModal" class="modal">
+    <div id="mainModal" class="modal">
       <div id="insideMainModal" class="insideModal"></div>
-    </div> -->
+    </div>
     <div class="buttonDiv">
       <button id="pop" class="moreButton" onclick="loadMorePopular()">
         Load More

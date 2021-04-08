@@ -6,10 +6,10 @@ let latestPage = 1;
 let peoplePage = 1;
 let searchPage = 1;
 
-const urlOptions = {
-  category: "person",
-  searchBy: "popular",
-};
+// const urlOptions = {
+//   category: "person",
+//   searchBy: "popular",
+// };
 
 //getting data for popular movies
 const getArticle = async () => {
@@ -34,7 +34,7 @@ const renderArticles = (data, location) => {
   let theMovieList = data
     .map((movieData) => {
       // onClick="showModal(${movieData.id})" can be added if needed
-      return `<div class="singleMovieDiv">
+      return `<div class="singleMovieDiv" onClick="showModal(${movieData.id})">
       <img class="everyImage" src="https://image.tmdb.org/t/p/w220_and_h330_face${movieData.poster_path}" alt=""/>
       <h3>${movieData.title}</h3>
   <p class="makeItalic">${movieData.release_date}</p>
@@ -50,28 +50,9 @@ const renderArticles = (data, location) => {
 
 // end of popular -----------------------------------------------
 
-// popular actors/actresses
-// const getURL = (urlOptions) => {
-// let url = Object.keys(urlOptions).reduce((url, option, type) => {
-//   if (urlOptions[option] || urlOptions[type]) {
-//     url += `${urlOptions[option]}/`;
-//   }
-//   return url;
-// }, `https://api.themoviedb.org/3/`);
-// url += `?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
-// let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
-// console.log(url);
-// return url;
-// };
-
 const getActors = async () => {
-  // const response = await fetch(
-  //this is url for getting popular data
-  // getURL(urlOptions)
-  // );
   console.log("am i even in");
-  let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
-  // const data = await response.json();
+  let url = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
   console.log("the url", url);
   const data = await fetch(url);
   console.log("the date", data);
@@ -186,12 +167,49 @@ const getSearchData = async (url) => {
 //end of search function -----------------------------------------
 
 // just to create modal if needed
-// const showModal = (movieID) => {
-//   alert("here");
-//   let modal = document.getElementById("mainModal");
-//   modal.style.display = "block";
-//   modal.childNodes[1].innerHTML = `${movieID}`;
-// };
+const showModal = (movieID) => {
+  // alert("here");
+  let modal = document.getElementById("mainModal");
+  modal.style.display = "block";
+  getTrailerData(movieID);
+  // modal.childNodes[1].innerHTML = `<div>${movieID}</div><button onclick="closeModal()">X</button>`;
+};
+const closeModal = () => {
+  let modal = document.getElementById("mainModal");
+  modal.style.display = "none";
+  modal.childNodes[1].innerHTML = "";
+};
+
+const getTrailerData = async (movieID) => {
+  let actorActressArray = []
+  let modal = document.getElementById("mainModal");
+  let trailerLink = `https://api.themoviedb.org/3/movie/${movieID}/videos?api_key=${API_KEY}&language=en-US`;
+  const trailerData = await fetch(trailerLink);
+  const trailerResult = await trailerData.json();
+  let movieLink = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${API_KEY}&language=en-US`
+  const movieData = await fetch(movieLink);
+  const movieResult = await movieData.json();
+
+  let creditLink = `https://api.themoviedb.org/3/movie/${movieID}/credits?api_key=${API_KEY}&language=en-US`
+  const creditData = await fetch(creditLink)
+  const creditResult = await creditData.json()
+  let actorActressLink = creditResult.cast.slice(0,5).map(person => `https://api.themoviedb.org/3/person/${person.id}?api_key=${API_KEY}&language=en-US`)
+  // const actorActressData = actorActressLink.map((link) => await fetch(link))
+  const actorActressData = await Promise.all(actorActressLink.map((link) => fetch(link)))
+  const firstFiveActorActressResult = await Promise.all(actorActressData.map( (data) =>  data.json()))
+  console.log("movie",movieResult);
+  console.log("credit",creditResult)
+  console.log(firstFiveActorActressResult)
+  // console.log(await Promise.all(actorActressData.map( (data) =>  data.json())))
+  // console.log(creditResult.cast.slice(0,5).map(person => `https://api.themoviedb.org/3/person/${person.id}?api_key=${API_KEY}&language=en-US`))
+  const trailerKey = trailerResult.results[0].key;
+  // ${firstFiveActorActressResult.map((item) => item.name)}
+  modal.childNodes[1].innerHTML = `
+  <h1>${movieResult.original_title}</h1>
+  <button class="closeButton" onclick="closeModal()">X</button>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/${trailerKey}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; picture-in-picture" allowfullscreen></iframe>
+  </a><h3>Overview</h3><p>${movieResult.overview}</p>`;
+};
 
 //button functions and display
 const loadMorePopular = () => {

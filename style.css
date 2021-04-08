@@ -151,7 +151,7 @@ footer {
   display: flex;
   justify-content: center;
 }
-/* .modal {
+.modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -165,9 +165,17 @@ footer {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .insideModal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   background-color: #fefefe;
+  color: black;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
-} */
+}
+.closeButton{
+position: absolute;
+left: 95%;
+}

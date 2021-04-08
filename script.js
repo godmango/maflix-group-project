@@ -70,7 +70,7 @@ const getActors = async () => {
   // getURL(urlOptions)
   // );
   console.log("am i even in");
-  let url = `https://api.themoviedb.org/3/person/popular/?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
+  let url = `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=${peoplePage}`;
   // const data = await response.json();
   console.log("the url", url);
   const data = await fetch(url);
